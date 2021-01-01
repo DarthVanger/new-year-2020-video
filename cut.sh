@@ -17,5 +17,5 @@ case "$1" in
 
 echo "Cutting files from '${source_folder}'"
 
-ffmpeg -y -ss 00:00:00 -i "${source_folder}/1.mp4"  -t 69 "${output_folder}/01.mp4"
-ffmpeg -y -ss 00:02:49 -i "${source_folder}/1.mp4"  -t 11 "${output_folder}/02.mp4"
+ffmpeg -y -ss 00:00:00 -i "${source_folder}/1.mp4"  -t 99 "${output_folder}/01.mp4"
+ffmpeg -y -ss 00:02:51 -i "${source_folder}/1.mp4"  -t 4 "${output_folder}/02.mp4"
