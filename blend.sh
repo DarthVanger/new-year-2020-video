@@ -1,6 +1,6 @@
-#ffmpeg -y  -i output/video.mp4  -t 98 output/01.mp4
-#ffmpeg -y -ss 98 -i output/video.mp4  output/02.mp4
-#ffmpeg -y -ss 4 -i source_video/shedryk.mp4  output/shedryk.mp4
+ffmpeg -y  -i output/video.mp4  -t 100 output/01.mp4
+ffmpeg -y -ss 100 -i output/video.mp4  output/02.mp4
+ffmpeg -y -ss 6 -i source_video/shedryk.mp4  output/shedryk.mp4
 
 ffmpeg -y -i output/02.mp4 -i output/shedryk.mp4 \
     -filter_complex "[0:v][1:v] blend=all_mode='overlay'" \
