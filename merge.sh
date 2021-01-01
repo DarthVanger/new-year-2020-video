@@ -28,6 +28,8 @@ ffmpeg -y \
 
 ffmpeg -i "${output_folder}"/temp.mp4 -i "${output_folder}"/audio.mp3 -c:v copy -c:a aac -map 0:v:0 -map 1:a:0  "${output_folder}"/merged.mp4
 
+mv output/merged.mp4 output/video.mp4
+
 echo "Concatenated videos list:"
 cat concat-list.txt
 rm concat-list.txt
