@@ -18,26 +18,34 @@ ffmpeg -y -ss 22 -i $source_folder/berlin.mp4 -t 5 output/berlin2.mp4
 ffmpeg -y -ss 121 -i $source_folder/maidan.mp4 -t 10 output/maidan.mp4
 ffmpeg -y -ss 65 -i $source_folder/shedryk.mp4 -t 14 output/shedryk2.mp4
 
+scale=1
+# for preview
+# scale=2.66
+
+blend_expr="A*if(gte(X,440/$scale), 1, 0)*if(lte(X,840/$scale), 1, 0) + B*if(gte(X,440/$scale), 0, 1) + B*if(lte(X,840/$scale), 0, 1)"
+filter_complex="[0:v][1:v]blend=all_expr='$blend_expr'"
+
 ffmpeg -y -i output/04.mp4 -i output/berlin.mp4 \
-    -filter_complex "[0:v] format=rgba [a]; [1:v] format=rgba [b]; [a][b] blend=all_expr='A*if(gte(X,440/2.66), 1, 0)*if(lte(X,840/2.66), 1, 0) + B*if(gte(X,440/2.66), 0, 1) + B*if(lte(X,840/2.66), 0, 1)'" \
+    -filter_complex "$filter_complex" \
     output/b03.mp4
 
 ffmpeg -y -i output/05.mp4 -i output/red-army.mp4 \
-    -filter_complex "[0:v] format=rgba [a]; [1:v] format=rgba [b]; [a][b] blend=all_expr='A*if(gte(X,440/2.66), 1, 0)*if(lte(X,840/2.66), 1, 0) + B*if(gte(X,440/2.66), 0, 1) + B*if(lte(X,840/2.66), 0, 1)'" \
+    -filter_complex "$filter_complex" \
     output/b04.mp4
 
 ffmpeg -y -i output/07.mp4 -i output/berlin2.mp4 \
-    -filter_complex "[0:v] format=rgba [a]; [1:v] format=rgba [b]; [a][b] blend=all_expr='A*if(gte(X,440/2.66), 1, 0)*if(lte(X,840/2.66), 1, 0) + B*if(gte(X,440/2.66), 0, 1) + B*if(lte(X,840/2.66), 0, 1)'" \
+    -filter_complex "$filter_complex" \
     output/b06.mp4
 
 ffmpeg -y -i output/08.mp4 -i output/maidan.mp4 \
-    -filter_complex "[0:v] format=rgba [a]; [1:v] format=rgba [b]; [a][b] blend=all_expr='A*if(gte(X,440/2.66), 1, 0)*if(lte(X,840/2.66), 1, 0) + B*if(gte(X,440/2.66), 0, 1) + B*if(lte(X,840/2.66), 0, 1)'" \
+    -filter_complex "$filter_complex" \
     output/b07.mp4
 
 ffmpeg -y -i output/09.mp4 -i output/shedryk2.mp4 \
-    -filter_complex "[0:v] format=rgba [a]; [1:v] format=rgba [b]; [a][b] blend=all_expr='A*if(gte(X,440/2.66), 1, 0)*if(lte(X,840/2.66), 1, 0) + B*if(gte(X,440/2.66), 0, 1) + B*if(lte(X,840/2.66), 0, 1)'" \
+    -filter_complex "$filter_complex" \
     output/b08-1.mp4
 
+# fade out
 ffmpeg -y -i output/b08-1.mp4 -i output/shedryk2.mp4 -filter_complex "[0]settb=AVTB[v0];[1]settb=AVTB[v1]; [v0][v1]xfade=transition=fade:duration=10:offset=10" output/b08.mp4
 
 
