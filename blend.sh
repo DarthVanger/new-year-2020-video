@@ -42,7 +42,9 @@ ffmpeg -y -i output/08.mp4 -i output/maidan.mp4 \
 
 ffmpeg -y -i output/09.mp4 -i output/shedryk2.mp4 \
     -filter_complex "[0:v] format=rgba [a]; [1:v] format=rgba [b]; [a][b] blend=all_expr='A*if(gte(X,440/2.66), 1, 0)*if(lte(X,840/2.66), 1, 0) + B*if(gte(X,440/2.66), 0, 1) + B*if(lte(X,840/2.66), 0, 1)'" \
-    output/b08.mp4
+    output/b08-1.mp4
+
+ffmpeg -y -i output/b08-1.mp4 -i output/shedryk2.mp4 -filter_complex "[0]settb=AVTB[v0];[1]settb=AVTB[v1]; [v0][v1]xfade=transition=fade:duration=10:offset=10" output/b08.mp4
 
 
 ffmpeg -y -f concat -i blend-concat.txt output/video_t.mp4
