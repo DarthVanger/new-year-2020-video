@@ -1,6 +1,4 @@
 file 'output/01.mp4'
-file 'output/02.mp4'
-file 'output/03.mp4'
 file 'output/b03.mp4'
 file 'output/b04.mp4'
 file 'output/b05.mp4'

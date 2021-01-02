@@ -1,6 +1,4 @@
-ffmpeg -y  -i output/video.mp4 -t 110 output/01.mp4
-ffmpeg -y -ss 110 -i output/video.mp4 -t 5 output/02.mp4
-ffmpeg -y -ss 115 -i output/video.mp4 -t 5 output/03.mp4
+ffmpeg -y  -i output/video.mp4 -t 120 output/01.mp4
 ffmpeg -y -ss 120 -i output/video.mp4 -t 5 output/04.mp4
 ffmpeg -y -ss 125 -i output/video.mp4 -t 5 output/05.mp4
 ffmpeg -y -ss 130 -i output/video.mp4 -t 5 output/06.mp4
