@@ -13,7 +13,6 @@ ffmpeg -y -ss 150 -i output/video.mp4 output/09.mp4
 ffmpeg -y -ss 10 -i $source_folder/shedryk.mp4 -t 8 output/shedryk.mp4
 ffmpeg -y -i $source_folder/berlin-cut.mp4 -t 10 -vf 'fade=t=in:st=0:d=10' output/berlin.mp4
 ffmpeg -y -i $source_folder/red-army-cut.mp4 -t 5 output/red-army.mp4
-ffmpeg -y -ss 67 -i $source_folder/weed.mp4 -t 5 output/weed.mp4
 ffmpeg -y -ss 22 -i $source_folder/berlin.mp4 -t 5 output/berlin2.mp4
 ffmpeg -y -ss 121 -i $source_folder/maidan.mp4 -t 10 output/maidan.mp4
 ffmpeg -y -ss 65 -i $source_folder/shedryk.mp4 -t 14 output/shedryk2.mp4
